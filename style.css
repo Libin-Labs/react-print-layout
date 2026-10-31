@@ -1,0 +1,55 @@
+.lp-print-layout {
+  --print-preview-background: #e7e9ed;
+  color: #17191c;
+}
+.lp-print-page {
+  box-sizing: border-box;
+  padding: var(--print-top, 16mm) var(--print-right, 16mm) var(--print-bottom, 16mm)
+    var(--print-left, 16mm);
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+.lp-print-content {
+  flex: 1;
+  min-width: 0;
+}
+.lp-print-header {
+  margin-bottom: 5mm;
+}
+.lp-print-footer {
+  margin-top: 5mm;
+}
+@media screen {
+  .lp-print-preview {
+    background: var(--print-preview-background);
+    padding: 1rem;
+    overflow: auto;
+  }
+  .lp-print-preview .lp-print-page {
+    width: var(--print-width, 210mm);
+    min-height: var(--print-height, 297mm);
+    margin: 0 auto 1rem;
+    box-shadow: 0 2px 8px #0003;
+  }
+}
+@media print {
+  .lp-print-layout {
+    background: transparent;
+    padding: 0;
+  }
+  .lp-print-page {
+    width: var(--print-width, 210mm);
+    min-height: var(--print-height, 297mm);
+    margin: 0;
+    box-shadow: none;
+    break-after: page;
+  }
+  .lp-print-page:last-child {
+    break-after: auto;
+  }
+  .lp-print-header,
+  .lp-print-footer {
+    break-inside: avoid;
+  }
+}
